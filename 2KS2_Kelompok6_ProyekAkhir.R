@@ -395,7 +395,7 @@ iframe {
 
 # Fungsi untuk menghapus pencilan menggunakan IQR
 remove_outliers <- function(data, variable) {
-  cat("\n🔧 Mengolah variabel:", variable, "\n")
+  cat("🔧 Mengolah variabel:", variable, "\n")
   cat("📊 Jenis data:", class(data[[variable]]), "\n")
   Q1 <- quantile(data[[variable]], 0.25, na.rm = TRUE)
   Q3 <- quantile(data[[variable]], 0.75, na.rm = TRUE)
@@ -609,7 +609,7 @@ ui <- dashboardPage(
                     ),
                     
                     div(class = "metadata-item",
-                        h4("🔍 2. Analisis Inferensia", style = "color: #2C3E50; margin-bottom: 10px;"),
+                        h4(HTML("<i class='fas fa-chart-line'></i> 2. Analisis Inferensia"), style = "color: #2C3E50; margin-bottom: 10px;"),
                         p("📈 Regresi Linier Berganda (Multiple Linear Regression)"),
                         p("🧪 Uji Signifikansi Parameter (t-test)"),
                         p("📊 Uji Kelayakan Model (F-test)"),
@@ -642,86 +642,6 @@ ui <- dashboardPage(
                         p("📊 Jenis: Variabel kuantitatif kontinu"),
                         p("🎯 Peran: Variabel prediktor/penjelas"),
                         p("📏 Skala: Interval dan Rasio")
-                    ),
-                    
-                    div(class = "metadata-item",
-                        h4("🔢 Variabel Turunan", style = "color: #2C3E50; margin-bottom: 10px;"),
-                        p("📉 Residual: Selisih nilai aktual dan prediksi"),
-                        p("📊 Fitted Values: Nilai prediksi model"),
-                        p("🎯 Standardized Residuals: Residual yang dinormalisasi"),
-                        p("📈 Leverage: Pengaruh observasi terhadap model")
-                    )
-                )
-              ),
-              
-              fluidRow(
-                box(title = "🔬 Metode dan Teknik Analisis", 
-                    status = "success", solidHeader = TRUE, width = 12,
-                    fluidRow(
-                      column(4,
-                             div(class = "stats-highlight",
-                                 h4("📊 Preprocessing Data", style = "margin: 0;"),
-                                 br(),
-                                 p("🧹 Pembersihan Data Missing Values"),
-                                 p("📈 Deteksi dan Penanganan Outlier (IQR Method)"),
-                                 p("🔄 Transformasi dan Standarisasi Data"),
-                                 p("✅ Validasi Konsistensi Data")
-                             )
-                      ),
-                      column(4,
-                             div(class = "stats-highlight",
-                                 h4("🧮 Model Statistik", style = "margin: 0;"),
-                                 br(),
-                                 p("📈 Y = β₀ + β₁X₁ + β₂X₂ + ε"),
-                                 p("🎯 Estimasi Parameter dengan OLS"),
-                                 p("📊 Interval Kepercayaan Parameter"),
-                                 p("🔬 Pengujian Hipotesis Statistik")
-                             )
-                      ),
-                      column(4,
-                             div(class = "stats-highlight",
-                                 h4("📉 Diagnostik Model", style = "margin: 0;"),
-                                 br(),
-                                 p("📈 Analisis Grafik Residual"),
-                                 p("🔍 Q-Q Plot untuk Normalitas"),
-                                 p("📊 Scatter Plot Predicted vs Actual"),
-                                 p("⚡ Cook's Distance untuk Outlier")
-                             )
-                      )
-                    )
-                )
-              ),
-              
-              fluidRow(
-                box(title = "📚 Interpretasi dan Kriteria Penilaian", 
-                    status = "primary", solidHeader = TRUE, width = 12,
-                    fluidRow(
-                      column(6,
-                             h4("🎯 Kriteria Evaluasi Model:", style = "color: #2C3E50;"),
-                             tags$ul(
-                               tags$li("📊 R² ≥ 0.8: Model Sangat Baik"),
-                               tags$li("📈 R² 0.6-0.8: Model Baik"),
-                               tags$li("⚠️ R² 0.4-0.6: Model Sedang"),
-                               tags$li("❌ R² < 0.4: Model Kurang Baik"),
-                               br(),
-                               tags$li("✅ p-value < 0.05: Signifikan"),
-                               tags$li("🎯 VIF < 5: Tidak ada Multikolinearitas"),
-                               tags$li("📈 Residual Normal: Model Valid")
-                             )
-                      ),
-                      column(6,
-                             h4("🔍 Interpretasi Koefisien:", style = "color: #2C3E50;"),
-                             tags$ul(
-                               tags$li("➕ β > 0: Hubungan Positif"),
-                               tags$li("➖ β < 0: Hubungan Negatif"),
-                               tags$li("📏 |β|: Besaran Pengaruh"),
-                               tags$li("🎯 SE(β): Ketidakpastian Estimasi"),
-                               br(),
-                               tags$li("📊 t-statistik: Kekuatan Hubungan"),
-                               tags$li("🔬 Confidence Interval: Rentang Nilai"),
-                               tags$li("📈 Praktical Significance vs Statistical")
-                             )
-                      )
                     )
                 )
               )
@@ -765,7 +685,7 @@ ui <- dashboardPage(
               fluidRow(
                 box(title = "Data Contoh yang Telah Dibersihkan", status = "success", solidHeader = TRUE, width = 12,
                     div(style = "margin-bottom: 20px;",
-                        h4(icon("table"), " Data Analisis Lengkap:", style = "color: #2C3E50; margin-bottom: 10px;"),
+                        h4(HTML("<i class='fas fa-table'></i> Data Analisis Lengkap:"), style = "color: #2C3E50; margin-bottom: 10px;"),
                         p("Semua data yang telah dibersihkan dan siap untuk analisis dengan fitur pencarian dan sorting:", style = "color: #34495E;")
                     ),
                     DT::dataTableOutput("exampleCleanedData")
@@ -803,7 +723,7 @@ ui <- dashboardPage(
                                  p("🎯 1 Variabel Target (Y)"),
                                  p("📈 1-10 Faktor Prediktor (X)"),
                                  p("🧮 Minimum 20 observasi"),
-                                 p("💾 Format file: .xlsx")
+                                 p("💾 Format file: Multiple")
                              )
                       )
                     )
@@ -814,13 +734,7 @@ ui <- dashboardPage(
                 box(title = "🏷️ Langkah 2: Penamaan Variabel", status = "warning", solidHeader = TRUE, width = 12,
                     h4("✏️ Berikan Nama Deskriptif untuk Setiap Variabel:", style = "color: #2C3E50; margin-bottom: 15px;"),
                     p("Nama yang jelas akan memudahkan interpretasi hasil analisis.", style = "margin-bottom: 20px;"),
-                    uiOutput("variable_labels_ui"),
-                    div(style = "background: #f8f9fa; padding: 15px; border-radius: 10px; margin-top: 15px;",
-                        h5("💡 Tips Penamaan Variabel:", style = "color: #2C3E50; margin-bottom: 10px;"),
-                        p("• Gunakan nama yang spesifik: 'Harga Beras per Kg' bukan 'Harga'", style = "margin: 5px 0;"),
-                        p("• Sertakan satuan jika diperlukan: 'Suhu Rata-rata (°C)'", style = "margin: 5px 0;"),
-                        p("• Hindari singkatan yang tidak jelas", style = "margin: 5px 0;")
-                    )
+                    uiOutput("variable_labels_ui")
                 )
               ),
               
@@ -828,17 +742,7 @@ ui <- dashboardPage(
                 box(title = "📤 Langkah 3: Upload & Pemrosesan Data", status = "success", solidHeader = TRUE, width = 12,
                     fluidRow(
                       column(8,
-                             h4("📂 Format File Excel yang Dibutuhkan:", style = "color: #2C3E50; margin-bottom: 15px;"),
-                             div(style = "background: #e8f5e8; padding: 15px; border-radius: 10px; margin-bottom: 20px;",
-                                 h5("✅ Struktur Data:", style = "color: #27AE60; margin-bottom: 10px;"),
-                                 tags$ul(
-                                   tags$li("📊 Kolom pertama: Variabel target yang ingin diprediksi (Y)"),
-                                   tags$li("📈 Kolom berikutnya: Faktor-faktor prediktor (X1, X2, X3, ...)"),
-                                   tags$li("🔢 Semua data harus berupa angka (numerik)"),
-                                   tags$li("🚫 Tidak boleh ada sel kosong atau teks"),
-                                   tags$li("📏 Minimal 20 baris data untuk analisis yang valid")
-                                 )
-                             ),
+                             h4("📂 Format File yang Dibutuhkan:", style = "color: #2C3E50; margin-bottom: 15px;"),
                              fileInput("file_custom", HTML("<i class='fas fa-file-upload'></i> Pilih File Data Anda:"), 
                                       accept = c(".xlsx", ".xls", ".csv", ".sav", ".dta", ".txt", ".tsv"),
                                       buttonLabel = HTML("<i class='fas fa-folder-open'></i> Browse..."),
@@ -860,7 +764,7 @@ ui <- dashboardPage(
                                  p("✅ Data dalam format angka"),
                                  p("✅ Tidak ada sel kosong"),
                                  p("✅ Minimal 20 observasi"),
-                                 p("✅ File format .xlsx"),
+                                 p("✅ File multi-format"),
                                  p("✅ Kolom terstruktur rapi")
                              )
                       )
@@ -878,7 +782,7 @@ ui <- dashboardPage(
                     div(style = "min-height: 200px; padding: 20px; text-align: center;",
                         div(id = "processing-status",
                             h4("⏳ Menunggu Data", style = "color: #7F8C8D; margin-bottom: 15px;"),
-                            p("Upload file Excel Anda untuk memulai pemrosesan", style = "color: #95A5A6;"),
+                            p("Upload file data Anda untuk memulai pemrosesan", style = "color: #95A5A6;"),
                             hr(),
                             p("🔄 Sistem akan otomatis:", style = "color: #34495E; font-weight: 600; margin-bottom: 10px;"),
                             tags$ul(style = "text-align: left; color: #7F8C8D;",
@@ -895,7 +799,7 @@ ui <- dashboardPage(
               fluidRow(
                 box(title = "Data yang Telah Dibersihkan", status = "success", solidHeader = TRUE, width = 12,
                     div(style = "margin-bottom: 20px;",
-                        h4(icon("table"), " Data Siap Analisis:", style = "color: #2C3E50; margin-bottom: 10px;"),
+                        h4(HTML("<i class='fas fa-table'></i> Data Siap Analisis:"), style = "color: #2C3E50; margin-bottom: 10px;"),
                         p("Semua data Anda yang telah dibersihkan dan siap untuk dianalisis dengan fitur pencarian dan sorting:", style = "color: #34495E;")
                     ),
                     DT::dataTableOutput("customCleanedData")
@@ -943,36 +847,6 @@ ui <- dashboardPage(
               
               fluidRow(
                 box(title = "📊 Hasil Analisis Statistik Deskriptif", status = "success", solidHeader = TRUE, width = 12,
-                    div(style = "margin-bottom: 20px;",
-                        h4("📋 Interpretasi Statistik:", style = "color: #2C3E50; margin-bottom: 10px;"),
-                        p("Analisis ini memberikan gambaran komprehensif tentang karakteristik data Anda:", style = "color: #34495E; margin-bottom: 20px;"),
-                        fluidRow(
-                          column(3,
-                                 div(class = "stats-highlight",
-                                     h5("📊 Pemusatan", style = "margin: 0; font-size: 14px;"),
-                                     p("Mean, Median", style = "margin: 5px 0 0 0; font-size: 12px;")
-                                 )
-                          ),
-                          column(3,
-                                 div(class = "stats-highlight",
-                                     h5("📏 Penyebaran", style = "margin: 0; font-size: 14px;"),
-                                     p("Min, Max, Range", style = "margin: 5px 0 0 0; font-size: 12px;")
-                                 )
-                          ),
-                          column(3,
-                                 div(class = "stats-highlight",
-                                     h5("🎯 Variabilitas", style = "margin: 0; font-size: 14px;"),
-                                     p("Standar Deviasi", style = "margin: 5px 0 0 0; font-size: 12px;")
-                                 )
-                          ),
-                          column(3,
-                                 div(class = "stats-highlight",
-                                     h5("📈 Distribusi", style = "margin: 0; font-size: 14px;"),
-                                     p("Skewness, Outlier", style = "margin: 5px 0 0 0; font-size: 12px;")
-                                 )
-                          )
-                        )
-                    ),
                     verbatimTextOutput("descStats")
                 )
               )
@@ -1018,39 +892,18 @@ ui <- dashboardPage(
               
               fluidRow(
                 box(title = "📈 Grafik Residual vs Prediksi", status = "primary", solidHeader = TRUE, width = 12,
-                    div(style = "margin-bottom: 20px;",
-                        h4("🔍 Analisis Pola Residual:", style = "color: #2C3E50; margin-bottom: 10px;"),
-                        p("Grafik ini menunjukkan hubungan antara nilai prediksi dengan residual (kesalahan prediksi). Pola acak menandakan model yang baik.", style = "color: #34495E; margin-bottom: 15px;"),
-                        div(style = "background: #e3f2fd; padding: 10px; border-radius: 8px;",
-                            p("💡 Interpretasi: Titik tersebar acak = Model valid | Pola tertentu = Perlu perbaikan model", style = "margin: 0; color: #1976D2; font-weight: 500;")
-                        )
-                    ),
                     plotOutput("residualsPlot", height = 400)
                 )
               ),
               
               fluidRow(
                 box(title = "📊 Distribusi Kesalahan Prediksi", status = "warning", solidHeader = TRUE, width = 12,
-                    div(style = "margin-bottom: 20px;",
-                        h4("📈 Histogram Residual:", style = "color: #2C3E50; margin-bottom: 10px;"),
-                        p("Distribusi kesalahan prediksi menunjukkan normalitas residual. Bentuk lonceng (normal) menandakan asumsi model terpenuhi.", style = "color: #34495E; margin-bottom: 15px;"),
-                        div(style = "background: #fff3e0; padding: 10px; border-radius: 8px;",
-                            p("💡 Interpretasi: Bentuk lonceng = Residual normal | Skewed/bimodal = Perlu transformasi data", style = "margin: 0; color: #F57C00; font-weight: 500;")
-                        )
-                    ),
                     plotOutput("histResiduals", height = 400)
                 )
               ),
               
               fluidRow(
                 box(title = "🎯 Perbandingan Nilai Asli vs Prediksi", status = "success", solidHeader = TRUE, width = 12,
-                    div(style = "margin-bottom: 20px;",
-                        h4("📊 Akurasi Prediksi Model:", style = "color: #2C3E50; margin-bottom: 10px;"),
-                        p("Scatter plot yang membandingkan nilai aktual dengan prediksi model. Kedekatan dengan garis diagonal menunjukkan akurasi tinggi.", style = "color: #34495E; margin-bottom: 15px;"),
-                        div(style = "background: #e8f5e8; padding: 10px; border-radius: 8px;",
-                            p("💡 Interpretasi: Dekat garis merah = Prediksi akurat | Tersebar jauh = Prediksi kurang akurat", style = "margin: 0; color: #388E3C; font-weight: 500;")
-                        )
-                    ),
                     plotOutput("predictedVsActual", height = 400)
                 )
               )
@@ -1096,49 +949,12 @@ ui <- dashboardPage(
               
               fluidRow(
                 box(title = "📊 Detail Teknis Model Regresi", status = "primary", solidHeader = TRUE, width = 12,
-                    div(style = "margin-bottom: 20px;",
-                        h4("🔬 Output Statistik Lengkap:", style = "color: #2C3E50; margin-bottom: 10px;"),
-                        p("Berikut adalah hasil lengkap dari analisis regresi linier berganda termasuk koefisien, standard error, t-value, dan p-value:", style = "color: #34495E; margin-bottom: 15px;"),
-                        div(style = "background: #e3f2fd; padding: 10px; border-radius: 8px; margin-bottom: 15px;",
-                            fluidRow(
-                              column(3,
-                                     p("📈 Estimate: Koefisien regresi", style = "margin: 0; color: #1976D2; font-size: 13px;")
-                              ),
-                              column(3,
-                                     p("📏 Std. Error: Standar error", style = "margin: 0; color: #1976D2; font-size: 13px;")
-                              ),
-                              column(3,
-                                     p("🧪 t value: Statistik uji", style = "margin: 0; color: #1976D2; font-size: 13px;")
-                              ),
-                              column(3,
-                                     p("⭐ Pr(>|t|): Nilai p", style = "margin: 0; color: #1976D2; font-size: 13px;")
-                              )
-                            )
-                        )
-                    ),
                     verbatimTextOutput("regressionSummary")
                 )
               ),
               
               fluidRow(
                 box(title = HTML("<i class='fas fa-brain'></i> Interpretasi dan Kesimpulan Praktis"), status = "success", solidHeader = TRUE, width = 12,
-                    div(style = "margin-bottom: 20px;",
-                        h4(HTML("<i class='fas fa-list-alt'></i> Analisis Hasil yang Mudah Dipahami:"), style = "color: #2C3E50; margin-bottom: 10px;"),
-                        p("Interpretasi komprehensif dari hasil analisis regresi dalam format terstruktur dengan rekomendasi praktis:", style = "color: #34495E; margin-bottom: 15px;"),
-                        div(style = "background: #e8f5e8; padding: 10px; border-radius: 8px; margin-bottom: 15px;",
-                            fluidRow(
-                              column(4,
-                                     p(HTML("<i class='fas fa-bullseye'></i> Kualitas Model: Seberapa baik model memprediksi"), style = "margin: 0; color: #388E3C; font-size: 13px;")
-                              ),
-                              column(4,
-                                     p(HTML("<i class='fas fa-chart-bar'></i> Pengaruh Faktor: Mana yang signifikan berpengaruh"), style = "margin: 0; color: #388E3C; font-size: 13px;")
-                              ),
-                              column(4,
-                                     p(HTML("<i class='fas fa-lightbulb'></i> Rekomendasi: Saran untuk langkah selanjutnya"), style = "margin: 0; color: #388E3C; font-size: 13px;")
-                              )
-                            )
-                        )
-                    ),
                     htmlOutput("regressionInterpretation")
                 )
               )
@@ -1364,7 +1180,7 @@ server <- function(input, output, session) {
       }
       return(info_text)
     } else {
-      return("Belum ada data yang diproses. Silakan unggah file Excel Anda terlebih dahulu.")
+      return("Belum ada data yang diproses. Silakan unggah file data Anda terlebih dahulu.")
     }
   })
   
@@ -1419,7 +1235,7 @@ server <- function(input, output, session) {
                       search = "🔍 Cari:",
                       lengthMenu = "Tampilkan _MENU_ data per halaman",
                       info = "📊 Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
-                      paginate = list(previous = "⬅️ Sebelumnya", next = "Selanjutnya ➡️")
+                      paginate = list(previous = "⬅️ Sebelumnya", "next" = "Selanjutnya ➡️")
                     )
                   ),
                   rownames = FALSE,
@@ -1440,7 +1256,7 @@ server <- function(input, output, session) {
                       search = "🔍 Cari:",
                       lengthMenu = "Tampilkan _MENU_ data per halaman",
                       info = "📊 Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
-                      paginate = list(previous = "⬅️ Sebelumnya", next = "Selanjutnya ➡️")
+                      paginate = list(previous = "⬅️ Sebelumnya", "next" = "Selanjutnya ➡️")
                     )
                   ),
                   rownames = FALSE,
@@ -1698,7 +1514,6 @@ server <- function(input, output, session) {
       }
       
       r_squared <- summary_model$r.squared
-      adj_r_squared <- summary_model$adj.r.squared
       
       # Build structured HTML output
       html_output <- paste0(
@@ -1748,178 +1563,20 @@ server <- function(input, output, session) {
         '</div>'
       )
       
-      # Statistical Significance Test
-      f_stat <- summary_model$fstatistic
-      if (!is.null(f_stat)) {
-        f_p_value <- pf(f_stat[1], f_stat[2], f_stat[3], lower.tail = FALSE)
-        sig_status <- ""
-        sig_color <- ""
-        
-        if (f_p_value < 0.001) {
-          sig_status <- "SANGAT SIGNIFIKAN (p < 0.001)"
-          sig_color <- "#27AE60"
-        } else if (f_p_value < 0.01) {
-          sig_status <- "SIGNIFIKAN (p < 0.01)"
-          sig_color <- "#2ECC71"
-        } else if (f_p_value < 0.05) {
-          sig_status <- "CUKUP SIGNIFIKAN (p < 0.05)"
-          sig_color <- "#F39C12"
-        } else {
-          sig_status <- "TIDAK SIGNIFIKAN (p ≥ 0.05)"
-          sig_color <- "#E74C3C"
-        }
-        
-        html_output <- paste0(html_output,
-          '<div class="result-section">',
-          '<div class="interpretation-header"><i class="fas fa-vial section-icon"></i>UJI KELAYAKAN MODEL</div>',
-          '<div style="background: ', sig_color, '; color: white; padding: 15px; border-radius: 10px; margin: 10px 0;">',
-          '<h4 style="margin: 0;"><i class="fas fa-check-circle"></i> ', sig_status, '</h4>',
-          '</div>',
-          '</div>'
-        )
-      }
-      
-      # Individual Factor Analysis
-      html_output <- paste0(html_output,
-        '<div class="result-section">',
-        '<div class="interpretation-header"><i class="fas fa-microscope section-icon"></i>ANALISIS SETIAP FAKTOR</div>'
-      )
-      
-      significant_vars <- 0
-      
-      if (input$data_choice_reg == "example") {
-        # Handle example data factors
-        if (length(coefs) >= 2) {
-          p_value_temp <- summary_model$coefficients[2, 4]
-          coef_temp <- coefs[2]
-          
-          factor_color <- if (p_value_temp < 0.05) "#2ECC71" else "#E74C3C"
-          factor_icon <- if (p_value_temp < 0.05) "fas fa-check-circle" else "fas fa-times-circle"
-          effect_direction <- if (coef_temp > 0) "POSITIF" else "NEGATIF"
-          effect_icon <- if (coef_temp > 0) "fas fa-arrow-up" else "fas fa-arrow-down"
-          
-          if (p_value_temp < 0.05) significant_vars <- significant_vars + 1
-          
-          html_output <- paste0(html_output,
-            '<div style="border: 2px solid ', factor_color, '; border-radius: 10px; padding: 15px; margin: 10px 0;">',
-            '<h5><i class="fas fa-thermometer-half"></i> SUHU RATA-RATA</h5>',
-            '<div style="background: ', factor_color, '; color: white; padding: 10px; border-radius: 5px; margin: 5px 0;">',
-            '<span><i class="', factor_icon, '"></i> ', if (p_value_temp < 0.05) "BERPENGARUH SIGNIFIKAN" else "TIDAK BERPENGARUH", '</span>',
-            '</div>',
-            '<p><i class="', effect_icon, '"></i> <strong>Arah pengaruh:</strong> ', effect_direction, '</p>',
-            '<p><i class="fas fa-calculator"></i> <strong>Besaran pengaruh:</strong> Setiap kenaikan 1°C akan ', 
-            if (coef_temp > 0) "meningkatkan" else "menurunkan", ' ', dep_var_name, ' sebesar Rp ', 
-            format(round(abs(coef_temp), 0), big.mark = ","), '</p>',
-            '</div>'
-          )
-        }
-        
-        if (length(coefs) >= 3) {
-          p_value_rain <- summary_model$coefficients[3, 4]
-          coef_rain <- coefs[3]
-          
-          factor_color <- if (p_value_rain < 0.05) "#2ECC71" else "#E74C3C"
-          factor_icon <- if (p_value_rain < 0.05) "fas fa-check-circle" else "fas fa-times-circle"
-          effect_direction <- if (coef_rain > 0) "POSITIF" else "NEGATIF"
-          effect_icon <- if (coef_rain > 0) "fas fa-arrow-up" else "fas fa-arrow-down"
-          
-          if (p_value_rain < 0.05) significant_vars <- significant_vars + 1
-          
-          html_output <- paste0(html_output,
-            '<div style="border: 2px solid ', factor_color, '; border-radius: 10px; padding: 15px; margin: 10px 0;">',
-            '<h5><i class="fas fa-cloud-rain"></i> CURAH HUJAN</h5>',
-            '<div style="background: ', factor_color, '; color: white; padding: 10px; border-radius: 5px; margin: 5px 0;">',
-            '<span><i class="', factor_icon, '"></i> ', if (p_value_rain < 0.05) "BERPENGARUH SIGNIFIKAN" else "TIDAK BERPENGARUH", '</span>',
-            '</div>',
-            '<p><i class="', effect_icon, '"></i> <strong>Arah pengaruh:</strong> ', effect_direction, '</p>',
-            '<p><i class="fas fa-calculator"></i> <strong>Besaran pengaruh:</strong> Setiap kenaikan 1mm akan ', 
-            if (coef_rain > 0) "meningkatkan" else "menurunkan", ' ', dep_var_name, ' sebesar Rp ', 
-            format(round(abs(coef_rain), 2), big.mark = ","), '</p>',
-            '</div>'
-          )
-        }
-      } else if (!is.null(custom_labels())) {
-        # Handle custom data factors
-        labels <- custom_labels()
-        x_vars <- names(coefs)[-1]
-        
-        for (i in 1:length(x_vars)) {
-          var_name <- x_vars[i]
-          coef_value <- coefs[i+1]
-          p_value <- summary_model$coefficients[i+1, 4]
-          
-          var_label <- if (var_name %in% names(labels)) labels[[var_name]] else var_name
-          
-          factor_color <- if (p_value < 0.05) "#2ECC71" else "#E74C3C"
-          factor_icon <- if (p_value < 0.05) "fas fa-check-circle" else "fas fa-times-circle"
-          effect_direction <- if (coef_value > 0) "POSITIF" else "NEGATIF"
-          effect_icon <- if (coef_value > 0) "fas fa-arrow-up" else "fas fa-arrow-down"
-          
-          if (p_value < 0.05) significant_vars <- significant_vars + 1
-          
-          html_output <- paste0(html_output,
-            '<div style="border: 2px solid ', factor_color, '; border-radius: 10px; padding: 15px; margin: 10px 0;">',
-            '<h5><i class="fas fa-cog"></i> ', toupper(var_label), '</h5>',
-            '<div style="background: ', factor_color, '; color: white; padding: 10px; border-radius: 5px; margin: 5px 0;">',
-            '<span><i class="', factor_icon, '"></i> ', if (p_value < 0.05) "BERPENGARUH SIGNIFIKAN" else "TIDAK BERPENGARUH", '</span>',
-            '</div>',
-            '<p><i class="', effect_icon, '"></i> <strong>Arah pengaruh:</strong> ', effect_direction, '</p>',
-            '<p><i class="fas fa-calculator"></i> <strong>Besaran pengaruh:</strong> Setiap kenaikan 1 unit pada ', var_label, ' akan ', 
-            if (coef_value > 0) "meningkatkan" else "menurunkan", ' ', labels[["Y"]], ' sebesar ', 
-            round(abs(coef_value), 4), '</p>',
-            '</div>'
-          )
-        }
-      }
-      
-      html_output <- paste0(html_output, '</div>')
-      
-      # Model Validation
-      validation_html <- '<div class="result-section"><div class="interpretation-header"><i class="fas fa-shield-alt section-icon"></i>VALIDASI MODEL</div>'
-      
-      # Normality test
-      if (length(residuals) >= 3 && length(residuals) <= 5000) {
-        shapiro_test <- shapiro.test(residuals)
-        norm_color <- if (shapiro_test$p.value > 0.05) "#2ECC71" else "#E67E22"
-        norm_icon <- if (shapiro_test$p.value > 0.05) "fas fa-check-circle" else "fas fa-exclamation-triangle"
-        norm_status <- if (shapiro_test$p.value > 0.05) "NORMAL" else "TIDAK NORMAL"
-        
-        validation_html <- paste0(validation_html,
-          '<p><i class="', norm_icon, '" style="color: ', norm_color, ';"></i> <strong>Distribusi kesalahan:</strong> ', norm_status, '</p>'
-        )
-      }
-      
-      # Homoscedasticity test
-      tryCatch({
-        bp_test <- bptest(model)
-        homo_color <- if (bp_test$p.value > 0.05) "#2ECC71" else "#E67E22"
-        homo_icon <- if (bp_test$p.value > 0.05) "fas fa-check-circle" else "fas fa-exclamation-triangle"
-        homo_status <- if (bp_test$p.value > 0.05) "KONSISTEN" else "TIDAK KONSISTEN"
-        
-        validation_html <- paste0(validation_html,
-          '<p><i class="', homo_icon, '" style="color: ', homo_color, ';"></i> <strong>Konsistensi kesalahan:</strong> ', homo_status, '</p>'
-        )
-      }, error = function(e) {})
-      
-      # Multicollinearity test
-      if (length(coefs) > 2) {
-        tryCatch({
-          vif_result <- vif(model)
-          multi_color <- if (all(vif_result < 5)) "#2ECC71" else if (all(vif_result < 10)) "#E67E22" else "#E74C3C"
-          multi_icon <- if (all(vif_result < 5)) "fas fa-check-circle" else "fas fa-exclamation-triangle"
-          multi_status <- if (all(vif_result < 5)) "INDEPENDEN" else if (all(vif_result < 10)) "SEDIKIT TERKAIT" else "SANGAT TERKAIT"
-          
-          validation_html <- paste0(validation_html,
-            '<p><i class="', multi_icon, '" style="color: ', multi_color, ';"></i> <strong>Keterkaitan antar faktor:</strong> ', multi_status, '</p>'
-          )
-        }, error = function(e) {})
-      }
-      
-      validation_html <- paste0(validation_html, '</div>')
-      html_output <- paste0(html_output, validation_html)
-      
       # Final Recommendations
       rec_html <- '<div class="result-section"><div class="interpretation-header"><i class="fas fa-lightbulb section-icon"></i>KESIMPULAN DAN REKOMENDASI</div>'
+      
+      significant_vars <- 0
+      if (input$data_choice_reg == "example") {
+        if (length(coefs) >= 2 && summary_model$coefficients[2, 4] < 0.05) significant_vars <- significant_vars + 1
+        if (length(coefs) >= 3 && summary_model$coefficients[3, 4] < 0.05) significant_vars <- significant_vars + 1
+      } else if (!is.null(custom_labels())) {
+        x_vars <- names(coefs)[-1]
+        for (i in 1:length(x_vars)) {
+          p_value <- summary_model$coefficients[i+1, 4]
+          if (p_value < 0.05) significant_vars <- significant_vars + 1
+        }
+      }
       
       if (significant_vars > 0 && r_squared >= 0.7) {
         rec_html <- paste0(rec_html,
@@ -1928,7 +1585,7 @@ server <- function(input, output, session) {
           '</div>',
           '<p><i class="fas fa-check"></i> ', significant_vars, ' faktor berpengaruh signifikan</p>',
           '<p><i class="fas fa-chart-line"></i> Akurasi prediksi tinggi (', round(r_squared * 100, 1), '%)</p>',
-          '<p><i class="fas fa-recommendation"></i> <strong>Rekomendasi:</strong> Gunakan model untuk prediksi dan pengambilan keputusan</p>'
+          '<p><i class="fas fa-lightbulb"></i> <strong>Rekomendasi:</strong> Gunakan model untuk prediksi dan pengambilan keputusan</p>'
         )
       } else if (significant_vars > 0 && r_squared >= 0.5) {
         rec_html <- paste0(rec_html,
@@ -1937,7 +1594,7 @@ server <- function(input, output, session) {
           '</div>',
           '<p><i class="fas fa-check"></i> ', significant_vars, ' faktor berpengaruh signifikan</p>',
           '<p><i class="fas fa-chart-line"></i> Akurasi prediksi sedang (', round(r_squared * 100, 1), '%)</p>',
-          '<p><i class="fas fa-recommendation"></i> <strong>Rekomendasi:</strong> Tambahkan faktor lain untuk meningkatkan akurasi</p>'
+          '<p><i class="fas fa-lightbulb"></i> <strong>Rekomendasi:</strong> Tambahkan faktor lain untuk meningkatkan akurasi</p>'
         )
       } else {
         rec_html <- paste0(rec_html,
@@ -1945,34 +1602,19 @@ server <- function(input, output, session) {
           '<h4 style="margin: 0;"><i class="fas fa-exclamation-triangle"></i> MODEL PERLU DIPERBAIKI</h4>',
           '</div>',
           '<p><i class="fas fa-times"></i> Akurasi prediksi rendah (', round(r_squared * 100, 1), '%)</p>',
-          '<p><i class="fas fa-recommendation"></i> <strong>Rekomendasi:</strong> Cari faktor yang lebih berpengaruh atau gunakan metode lain</p>'
+          '<p><i class="fas fa-lightbulb"></i> <strong>Rekomendasi:</strong> Cari faktor yang lebih berpengaruh atau gunakan metode lain</p>'
         )
       }
       
-      # Practical suggestions
-      rec_html <- paste0(rec_html,
-        '<h5><i class="fas fa-list-ul"></i> Saran Praktis:</h5>',
-        '<ul>',
-        '<li><i class="fas fa-search"></i> Kumpulkan lebih banyak data jika memungkinkan</li>',
-        '<li><i class="fas fa-chart-area"></i> Validasi model dengan data baru</li>'
-      )
-      
-      if (r_squared < 0.5) {
-        rec_html <- paste0(rec_html,
-          '<li><i class="fas fa-plus"></i> Eksplorasi faktor tambahan yang mungkin berpengaruh</li>',
-          '<li><i class="fas fa-sync"></i> Pertimbangkan transformasi data atau metode lain</li>'
-        )
-      }
-      
-      rec_html <- paste0(rec_html, '</ul></div>')
+      rec_html <- paste0(rec_html, '</div>')
       html_output <- paste0(html_output, rec_html)
       
       return(html_output)
       
-         }, error = function(e) {
-       return(paste('<div style="color: red;"><i class="fas fa-exclamation-triangle"></i> Terjadi kesalahan dalam analisis:', e$message, '</div>'))
-     })
-   })
+    }, error = function(e) {
+      return(paste('<div style="color: red;"><i class="fas fa-exclamation-triangle"></i> Terjadi kesalahan dalam analisis:', e$message, '</div>'))
+    })
+  })
 }
 
 # Menjalankan Aplikasi Shiny
